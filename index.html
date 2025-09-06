@@ -1,1 +1,205 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"> <title>Rakshit Khandelwal — MSc Statistics</title> <style> :root{--bg:#0b1020;--fg:#eaf2ff;--muted:#b8c1d9;--brand:#7c9cff;--accent:#22d3ee} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--fg); background:radial-gradient(1000px 700px at 10% -10%,rgba(124,156,255,.25),transparent 60%), radial-gradient(900px 600px at 100% 0,rgba(34,211,238,.18),transparent 55%), linear-gradient(180deg,var(--bg),#0d1b2a)} header{text-align:center;padding:28px 16px} h1{margin:0 0 8px;font-size:clamp(28px,4vw,48px);letter-spacing:-.015em} .lead{color:var(--muted);margin:0 auto 16px;max-width:800px} .card{max-width:1000px;margin:18px auto;padding:16px;border-radius:16px; background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(10px)} .grid{display:grid;gap:14px;grid-template-columns:1.2fr .8fr} @media (max-width:900px){.grid{grid-template-columns:1fr}} img{width:100%;height:auto;border-radius:12px;display:block;border:1px solid rgba(255,255,255,.08)} .cap{font-size:12px;color:var(--muted);margin-top:6px} .stars{font-size:32px;letter-spacing:6px;cursor:pointer;user-select:none;margin-top:6px} .star{color:#6b7280;transition:.12s} .filled{color:#ffd166} .note{color:var(--muted);font-size:14px;margin-top:6px} footer{text-align:center;color:var(--muted);padding:22px 12px} </style> </head> <body> <header> <h1>Hi there, I am <span style="background:linear-gradient(135deg,#a5b4fc,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent">Rakshit Khandelwal</span></h1> <p class="lead">Currently pursuing MSc Statistics. This site is created for everyone who is interested in data.</p> </header> <main class="card"> <div class="grid"> <div> <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?q=80&w=1400&auto=format&fit=crop" alt="Data visualization on screen"> <div class="cap">Photo by Luke Chesser on Unsplash.</div> </div> <div> <h2 style="margin:6px 0 8px">Rate this site</h2> <div id="stars" class="stars" role="radiogroup" aria-label="5 star rating"> <span class="star" role="radio" aria-label="1 star">★</span> <span class="star" role="radio" aria-label="2 stars">★</span> <span class="star" role="radio" aria-label="3 stars">★</span> <span class="star" role="radio" aria-label="4 stars">★</span> <span class="star" role="radio" aria-label="5 stars">★</span> </div> <div id="note" class="note">No rating yet.</div> </div> </div> </main> <footer>© 2025 Rakshit Khandelwal</footer> <script> const stars=[...document.querySelectorAll('.star')], note=document.getElementById('note'); let current=0; const paint=n=>stars.forEach((s,i)=>s.classList.toggle('filled',i<n)); stars.forEach((s,i)=>{const n=i+1; s.tabIndex=0; s.addEventListener('mouseenter',()=>paint(n)); s.addEventListener('mouseleave',()=>paint(current)); s.addEventListener('click',()=>{current=n;paint(current);note.textContent=`Thanks! You rated ${current}/5.`;try{localStorage.setItem('site-rating',current)}catch{}}); s.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){current=n;paint(current);note.textContent=`Thanks! You rated ${current}/5.`;try{localStorage.setItem('site-rating',current)}catch{};e.preventDefault();}}) }); try{const saved=parseInt(localStorage.getItem('site-rating')||'0',10); if(saved>=1&&saved<=5){current=saved;paint(current);note.textContent=`Welcome back! Your rating is ${current}/5.`;}}catch{paint(0);} </script> </body> </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rakshit Khandelwal — MSc Statistics</title>
+<style>
+:root {
+  --bg: #0b1020;
+  --fg: #eaf2ff;
+  --muted: #b8c1d9;
+  --brand: #7c9cff;
+  --accent: #22d3ee;
+}
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--fg);
+  background:
+    radial-gradient(1000px 700px at 10% -10%, rgba(124,156,255,0.25), transparent 60%),
+    radial-gradient(900px 600px at 100% 0, rgba(34,211,238,0.18), transparent 55%),
+    linear-gradient(180deg, var(--bg), #0d1b2a);
+}
+header {
+  text-align: center;
+  padding: 28px 16px;
+}
+h1 {
+  margin: 0 0 8px;
+  font-size: clamp(28px, 4vw, 48px);
+  letter-spacing: -0.015em;
+}
+.name {
+  background: linear-gradient(135deg, #a5b4fc, #22d3ee);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.lead {
+  color: var(--muted);
+  margin: 0 auto 16px;
+  max-width: 800px;
+}
+.card {
+  max-width: 1000px;
+  margin: 18px auto;
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+}
+.grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1.2fr 0.8fr;
+}
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.cap {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+.stars {
+  font-size: 32px;
+  letter-spacing: 6px;
+  cursor: pointer;
+  user-select: none;
+  margin-top: 6px;
+}
+.star {
+  color: #6b7280;
+  transition: 0.12s;
+}
+.filled {
+  color: #ffd166;
+}
+.note {
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 6px;
+}
+footer {
+  text-align: center;
+  color: var(--muted);
+  padding: 22px 12px;
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>
+    Hi there, I am
+    <span class="name">Rakshit Khandelwal</span>
+  </h1>
+  <p class="lead">
+    Currently pursuing MSc Statistics. This site is created for everyone who is interested in data.
+  </p>
+</header>
+
+<main class="card">
+  <div class="grid">
+    <div>
+      <img
+        src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?q=80&w=1400&auto=format&fit=crop"
+        alt="Data visualization on screen"
+      >
+      <div class="cap">
+        Photo by Luke Chesser on Unsplash.
+      </div>
+    </div>
+    <div>
+      <h2 style="margin:6px 0 8px">
+        Rate this site
+      </h2>
+      <div
+        id="stars"
+        class="stars"
+        role="radiogroup"
+        aria-label="5 star rating"
+      >
+        <span class="star" role="radio" aria-label="1 star">★</span>
+        <span class="star" role="radio" aria-label="2 stars">★</span>
+        <span class="star" role="radio" aria-label="3 stars">★</span>
+        <span class="star" role="radio" aria-label="4 stars">★</span>
+        <span class="star" role="radio" aria-label="5 stars">★</span>
+      </div>
+      <div id="note" class="note">
+        No rating yet.
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  © 2025 Rakshit Khandelwal
+</footer>
+
+<script>
+const stars = Array.from(document.querySelectorAll('.star'));
+const note = document.getElementById('note');
+let current = 0;
+
+function paint(n) {
+  stars.forEach((s, i) => {
+    s.classList.toggle('filled', i < n);
+  });
+}
+
+stars.forEach((s, i) => {
+  const n = i + 1;
+  s.tabIndex = 0;
+
+  s.addEventListener('mouseenter', () => paint(n));
+  s.addEventListener('mouseleave', () => paint(current));
+  s.addEventListener('click', () => {
+    current = n;
+    paint(current);
+    note.textContent = `Thanks! You rated ${current}/5.`;
+    try {
+      localStorage.setItem('site-rating', String(current));
+    } catch {}
+  });
+
+  s.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      current = n;
+      paint(current);
+      note.textContent = `Thanks! You rated ${current}/5.`;
+      try {
+        localStorage.setItem('site-rating', String(current));
+      } catch {}
+      e.preventDefault();
+    }
+  });
+});
+
+try {
+  const saved = parseInt(localStorage.getItem('site-rating') || '0', 10);
+  if (!isNaN(saved) && saved >= 1 && saved <= 5) {
+    current = saved;
+    paint(current);
+    note.textContent = `Welcome back! Your rating is ${current}/5.`;
+  } else {
+    paint(0);
+  }
+} catch {
+  paint(0);
+}
+</script>
+</body>
+</html>
+
+
