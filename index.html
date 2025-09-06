@@ -1,199 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rakshit Khandelwal — MSc Statistics</title>
-<style>
-:root {
-  --bg: #0b1020;
-  --fg: #eaf2ff;
-  --muted: #b8c1d9;
-  --brand: #7c9cff;
-  --accent: #22d3ee;
-}
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  color: var(--fg);
-  background:
-    radial-gradient(1000px 700px at 10% -10%, rgba(124,156,255,0.25), transparent 60%),
-    radial-gradient(900px 600px at 100% 0, rgba(34,211,238,0.18), transparent 55%),
-    linear-gradient(180deg, var(--bg), #0d1b2a);
-}
-header {
-  text-align: center;
-  padding: 28px 16px;
-}
-h1 {
-  margin: 0 0 8px;
-  font-size: clamp(28px, 4vw, 48px);
-  letter-spacing: -0.015em;
-}
-.name {
-  background: linear-gradient(135deg, #a5b4fc, #22d3ee);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-.lead {
-  color: var(--muted);
-  margin: 0 auto 16px;
-  max-width: 800px;
-}
-.card {
-  max-width: 1000px;
-  margin: 18px auto;
-  padding: 16px;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  backdrop-filter: blur(10px);
-}
-.grid {
-  display: grid;
-  gap: 14px;
-  grid-template-columns: 1.2fr 0.8fr;
-}
-@media (max-width: 900px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-}
-.cap {
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 6px;
-}
-.stars {
-  font-size: 32px;
-  letter-spacing: 6px;
-  cursor: pointer;
-  user-select: none;
-  margin-top: 6px;
-}
-.star {
-  color: #6b7280;
-  transition: 0.12s;
-}
-.filled {
-  color: #ffd166;
-}
-.note {
-  color: var(--muted);
-  font-size: 14px;
-  margin-top: 6px;
-}
-footer {
-  text-align: center;
-  color: var(--muted);
-  padding: 22px 12px;
-}
-</style>
+    <meta charset="UTF-8">
+    <title>Rakshit Khandelwal | MSc Statistics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Live floating background: colorful plus symbols & numbers */
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Verdana, sans-serif;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .floating-sym {
+            position: absolute;
+            font-size: 2.5em;
+            opacity: 0.35;
+            animation: float 12s linear infinite;
+            user-select: none;
+            z-index: 0;
+        }
+        @keyframes float {
+          0% {transform:translateY(120vh) scale(0.7);}
+          100% {transform:translateY(-10vh) scale(1.2);}
+        }
+
+        /* Colorful Headline */
+        .headline {
+            font-family: 'Trebuchet MS', cursive, sans-serif;
+            font-size: 2.7em;
+            font-weight: bold;
+            margin-top: 40px;
+            text-align: center;
+            background: linear-gradient(90deg,#ff8332,#38a4ff,#37f360,#ff379c,#b252ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Welcome text */
+        .welcome {
+            color: #1a1a1a;
+            font-size: 1.3em;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        /* PDF Link format */
+        .pdf-link {
+            display: block;
+            text-align: center;
+            margin: 14px 0;
+            font-size: 1.1em;
+        }
+
+        /* Image Styling */
+        .stat-img {
+            display: block;
+            margin: 25px auto 10px auto;
+            max-width: 460px;
+            border-radius: 10px;
+            box-shadow: 0 5px 14px rgba(60,60,120,0.13);
+            border: 2px solid #b252ff;
+        }
+
+        /* YouTube styling */
+        .youtube-link {
+            display: block;
+            text-align: center;
+            font-size: 1.15em;
+            color: #c4302b;
+            font-weight: bold;
+            margin-bottom: 60px;
+            text-decoration: underline;
+        }
+
+        /* 5-star Review Widget (top right) */
+        .review-section {
+            position: fixed;
+            top: 18px;
+            right: 24px;
+            background: rgba(255,255,255,0.85);
+            border-radius: 12px;
+            padding: 13px 24px 18px 24px;
+            box-shadow: 0 2px 10px rgba(40,40,60,0.16);
+            z-index: 2;
+        }
+        .stars {
+            unicode-bidi: bidi-override;
+            direction: rtl;
+            font-size: 2em;
+            margin-bottom: 8px;
+        }
+        .stars > span {
+            display: inline-block;
+            position: relative;
+            color: #ccc;
+            cursor: pointer;
+        }
+        .stars > span.selected, .stars > span:hover,
+        .stars > span:hover ~ span {
+            color: #ffcd3c;
+        }
+        .star-label {
+            font-size: 0.95em;
+            color: #222;
+            font-weight: bold;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        /* Comment Box */
+        .comment-box {
+            width: 97%;
+            max-width: 500px;
+            margin: 0 auto 40px auto;
+            background: rgba(245,245,255,0.88);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(40,40,60,0.12);
+            padding: 23px 30px;
+            position: relative;
+            z-index: 1;
+        }
+        .comment-box label {
+            font-size: 1.16em;
+            color: #333;
+            margin-bottom: 4px;
+            display: block;
+        }
+        .comment-box textarea {
+            width: 100%;
+            min-height: 67px;
+            resize: vertical;
+            font-size: 1em;
+            border-radius: 7px;
+            border: 1.5px solid #b252ff;
+            margin-bottom: 9px;
+            padding: 7px 12px;
+        }
+        .comment-box button {
+            background: #38a4ff;
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            padding: 9px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .comment-box button:hover {
+            background: #ff379c;
+        }
+    </style>
+    <script>
+      // Floating symbols: array of symbols
+      document.addEventListener('DOMContentLoaded', function() {
+        const symbols=['&#80;','&#960;','&#931;','&#x2200;','&#x2211;','&#x3C3;','&#x2212;','&#x222B;','&#8734;','&#181;','2','5','7','&#37;','&#61;','&quot;H<sub>0</sub>&quot;'];
+        for(let i=0; i<35; i++){
+          let sym = document.createElement('div');
+          sym.className='floating-sym';
+          sym.innerHTML=symbols[Math.floor(Math.random()*symbols.length)];
+          sym.style.left=Math.random()*97+'vw';
+          sym.style.animationDelay = (Math.random()*11)+'s';
+          sym.style.color=['#38a4ff','#ff379c','#ffcd3c','#37f360','#b252ff','#ff8332'][Math.floor(Math.random()*6)];
+          document.body.appendChild(sym);
+        }
+      });
+
+      // Interactive stars rating
+      function setRating(r) {
+        let stars=document.querySelectorAll('.stars span');
+        stars.forEach(function(star, idx){
+          star.classList.toggle('selected', 5-idx <= r);
+        });
+        document.getElementById('rating-value').value = r;
+      }
+    </script>
 </head>
 <body>
-<header>
-  <h1>
-    Hi there, I am
-    <span class="name">Rakshit Khandelwal</span>
-  </h1>
-  <p class="lead">
-    Currently pursuing MSc Statistics. This site is created for everyone who is interested in data.
-  </p>
-</header>
+    <div class="headline">Rakshit Khandelwal, Pursuing M.Sc. Statistics.</div>
+    <div class="welcome">Welcome to my page!</div>
 
-<main class="card">
-  <div class="grid">
-    <div>
-      <img
-        src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?q=80&w=1400&auto=format&fit=crop"
-        alt="Data visualization on screen"
-      >
-      <div class="cap">
-        Photo by Luke Chesser on Unsplash.
-      </div>
+    <a class="pdf-link" href="#" download="Rakshit_Khandelwal.pdf" style="color:#37f360;">
+        <b>[View or Download My PDF]</b>
+    </a>
+
+    <!-- Insert stats.jpg provided by user -->
+    <img src="Stats.jpg" alt="Statistics Concepts Image" class="stat-img">
+
+    <a class="youtube-link" href="https://youtube.com/@rakshitkhandelwal8497?si=zz45Y0K8lJmWRX2W" target="_blank">
+        Visit My YouTube Channel
+    </a>
+
+    <!-- 5-star review widget in right corner -->
+    <div class="review-section">
+        <span class="star-label">How do you rate my page?</span>
+        <div class="stars">
+          <span onclick="setRating(5)">&#9733;</span>
+          <span onclick="setRating(4)">&#9733;</span>
+          <span onclick="setRating(3)">&#9733;</span>
+          <span onclick="setRating(2)">&#9733;</span>
+          <span onclick="setRating(1)">&#9733;</span>
+        </div>
+        <form>
+            <input type="hidden" id="rating-value" name="rating" value="0">
+        </form>
     </div>
-    <div>
-      <h2 style="margin:6px 0 8px">
-        Rate this site
-      </h2>
-      <div
-        id="stars"
-        class="stars"
-        role="radiogroup"
-        aria-label="5 star rating"
-      >
-        <span class="star" role="radio" aria-label="1 star">★</span>
-        <span class="star" role="radio" aria-label="2 stars">★</span>
-        <span class="star" role="radio" aria-label="3 stars">★</span>
-        <span class="star" role="radio" aria-label="4 stars">★</span>
-        <span class="star" role="radio" aria-label="5 stars">★</span>
-      </div>
-      <div id="note" class="note">
-        No rating yet.
-      </div>
-    </div>
-  </div>
-</main>
 
-<footer>
-  © 2025 Rakshit Khandelwal
-</footer>
-
-<script>
-const stars = Array.from(document.querySelectorAll('.star'));
-const note = document.getElementById('note');
-let current = 0;
-
-function paint(n) {
-  stars.forEach((s, i) => {
-    s.classList.toggle('filled', i < n);
-  });
-}
-
-stars.forEach((s, i) => {
-  const n = i + 1;
-  s.tabIndex = 0;
-
-  s.addEventListener('mouseenter', () => paint(n));
-  s.addEventListener('mouseleave', () => paint(current));
-  s.addEventListener('click', () => {
-    current = n;
-    paint(current);
-    note.textContent = `Thanks! You rated ${current}/5.`;
-    try {
-      localStorage.setItem('site-rating', String(current));
-    } catch {}
-  });
-
-  s.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      current = n;
-      paint(current);
-      note.textContent = `Thanks! You rated ${current}/5.`;
-      try {
-        localStorage.setItem('site-rating', String(current));
-      } catch {}
-      e.preventDefault();
-    }
-  });
-});
-
-try {
-  const saved = parseInt(localStorage.getItem('site-rating') || '0', 10);
-  if (!isNaN(saved) && saved >= 1 && saved <= 5) {
-    current = saved;
-    paint(current);
-    note.textContent = `Welcome back! Your rating is ${current}/5.`;
-  } else {
-    paint(0);
-  }
-} catch {
-  paint(0);
-}
-</script>
+    <!-- Comment box -->
+    <form class="comment-box">
+        <label for="comment">Share your thoughts:</label>
+        <textarea id="comment" name="comment" placeholder="Type your feedback, questions, or suggestions here..."></textarea>
+        <button type="submit">Submit Comment</button>
+    </form>
 </body>
 </html>
-
-<a href="https://youtube.com/@rakshitkhandelwal8497?si=zz45Y0K8lJmWRX2W">Visit my YouTube channel</a> 
-<img src="stats_banner.png" alt="Statistics banner: hypothesis testing, sampling, probability, math" style="max-width:100%;height:auto;border-radius:12px;border:1px solid #ddd">
