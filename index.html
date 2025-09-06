@@ -76,3 +76,27 @@ footer {
   0%, 100% { transform: translateY(0) translateX(0); }
   50% { transform: translateY(10px) translateX(6px); }
 }
+</style> </head> <body> <div class="noise" aria-hidden="true"></div> <header> <span class="badge"><span class="ring"></span> Welcome to the Data Space</span> <h1>Hi there, I am <span style="background: linear-gradient(135deg,#a5b4fc,#22d3ee); -webkit-background-clip: text; background-clip: text; color: transparent;">Rakshit Khandelwal</span></h1> <p class="lead">Currently pursuing MSc Statistics. This site is created for everyone who is interested in data.</p> <div class="cta-row"> <a class="btn primary" href="#rate">★ Leave a 5‑Star Review</a> <a class="btn" href="#about">Learn more</a> </div> </header> <main class="card" id="about"> <div class="orb" aria-hidden="true"></div> <div class="orb2" aria-hidden="true"></div>
+<div class="grid">
+  <figure class="hero-media">
+    <!-- High-quality statistics/data image (Unsplash); free to use, keep credit -->
+    <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?q=80&w=1400&auto=format&fit=crop" alt="Data visualizations and charts on screen" />
+    <figcaption class="caption">
+      Photo by Luke Chesser on Unsplash (credit appreciated).
+    </figcaption>
+  </figure>
+
+  <section class="content">
+    <div class="highlight">
+      Passion for probability, inference, and real‑world data problems—shared openly for learners and practitioners.
+    </div>
+    <div>
+      Explore notes, PDFs, and resources as this space grows. Feedback helps improve the experience for everyone.
+    </div>
+    <div class="divider"></div>
+    <div>
+      Want to suggest a topic or share a dataset? Drop a message on GitHub once contact details are added.
+    </div>
+  </section>
+</div>
+</main> <section id="rate" class="card" style="margin-top: 0;"> <h2 style="margin: 4px 6px 6px; letter-spacing: .2px;">Rate this site</h2> <p style="margin: 0 6px 10px; color: var(--muted);">Tap a star to leave a quick rating.</p> <div class="rate-wrap" style="padding: 8px 6px 0;"> <div class="stars" role="radiogroup" aria-label="5 star rating"> <span class="star" role="radio" aria-checked="false" aria-label="1 star">★</span> <span class="star" role="radio" aria-checked="false" aria-label="2 stars">★</span> <span class="star" role="radio" aria-checked="false" aria-label="3 stars">★</span> <span class="star" role="radio" aria-checked="false" aria-label="4 stars">★</span> <span class="star" role="radio" aria-checked="false" aria-label="5 stars">★</span> </div> <div id="rating-note" class="note">No rating yet.</div> </div> </section> <footer> © 2025 Rakshit Khandelwal - Crafted with care and a touch of math </footer> <script> // Fancy 5-star rating (client-side only) const stars = Array.from(document.querySelectorAll('.star')); const note = document.getElementById('rating-note'); let current = 0; function paint(n) { stars.forEach((el, i) => { el.classList.toggle('filled', i < n); el.setAttribute('aria-checked', i < n ? 'true' : 'false'); }); } stars.forEach((el, idx) => { const n = idx + 1; el.tabIndex = 0; el.addEventListener('mouseenter', () => paint(n)); el.addEventListener('mouseleave', () => paint(current)); el.addEventListener('focus', () => paint(n)); el.addEventListener('blur', () => paint(current)); el.addEventListener('click', () => { current = n; paint(current); note.textContent = `Thanks! You rated this ${current}/5.`; try { localStorage.setItem('site-rating', String(current)); } catch {} }); el.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { current = n; paint(current); note.textContent = `Thanks! You rated this ${current}/5.`; try { localStorage.setItem('site-rating', String(current)); } catch {} e.preventDefault(); } }); }); // Restore previous rating if saved try { const saved = parseInt(localStorage.getItem('site-rating') || '0', 10); if (!isNaN(saved) && saved >= 1 && saved <= 5) { current = saved; paint(current); note.textContent = `Welcome back! Your rating is ${current}/5.`; } else { paint(0); } } catch { paint(0); } </script> </body> </html>
